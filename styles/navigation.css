@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.navbar {
+    background-color: skyblue;
+    width: 100%; /* Ensures full width */
+    padding: 15px 0;
+    position: fixed; /* Fixes the navbar at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures navbar is above other content */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 15px; /* Adds spacing for better clickability */
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Adds spacing so page content doesn't go under the navbar */
+main {
+    margin-top: 60px; /* Adjust based on navbar height */
+}
+

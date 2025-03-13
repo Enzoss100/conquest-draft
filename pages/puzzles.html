@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzles</title>
     <link rel="stylesheet" href="../styles/navigation.css">
+    <link rel="stylesheet" href="../styles/puzzles.css">
 </head>
 <body>
 
-    <div id="navbar-container"></div> <!-- Navbar will be injected here -->
+    <div id="navbar-container"></div> <!-- Navbar is injected here -->
 
     <main>
-        <h1>Puzzles Page</h1>
+        <h1>Puzzles</h1>
+        <div class="puzzle-container">
+            <div class="puzzle-box" onclick="location.href='puzzle1.html'">
+                <h2>Puzzle 1</h2>
+            </div>
+            <div class="puzzle-box" onclick="location.href='puzzle2.html'">
+                <h2>Puzzle 2</h2>
+            </div>
+            <div class="puzzle-box" onclick="location.href='puzzle3.html'">
+                <h2>Puzzle 3</h2>
+            </div>
+        </div>
     </main>
 
     <script src="../scripts/navbar.js"></script>

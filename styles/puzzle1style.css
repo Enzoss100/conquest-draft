@@ -1,0 +1,11 @@
+#hint {
+	font-size: 16;
+	font-weight: bolder;
+	text-align: center;
+}
+
+.tutorial {
+	display: none;
+	text-align: justify;
+	padding-left: 20px;
+}

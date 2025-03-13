@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+		<title> First Puzzle </title>
+		<link rel="stylesheet" href="../styles/puzzle1style.css">
+		<link rel="stylesheet" href="../styles/navigation.css">
+	</head>
+
+	<body>
+		<div id="navbar-container"></div> <!-- Navbar will be injected here -->
+		<br><br><br>
+		<p id="hint">
+			The key is hidden in the city. Take charge young Conqueror!<br>
+		</p>
+
+		<center><button id="toggleButton">If You are stuck, Click Me!</button></center><br><br>
+
+		<div class="tutorial">	
+			<p> If you feel stuck, maybe download the image of the clue</p>
+			<!--One other thing, you may want to use what you get from this puzzle to find a hidden page, by adding a .html at the end-->
+			<p>
+				For Extra help, read this:<br>
+				<ul>
+					<li>After downloading the image, look for a word hidden in the picture</li>
+					<li>Once you have found the word, have a look again at the filename of the image you just downloaded.</li>
+					<li>Take a look at the Vigenere Table and try to put 2 and 2 together to solve the puzzle!</li>
+					<li>To "submit" your final answer, go to the address bar of your browser,
+						and at the end of the website URL add another '/' and add your answer with a .html at the end <br><br>
+
+						Example:<br>
+						Format: https://www.test.com[/{puzzle_name}.html]<br>
+						Answer: https://www.test.com/hiddenpage.html<br>
+					</li>
+				</ul>
+			</p>
+		</div>
+		<center>
+			<img src="../images/conquestclue.jpg" height="720px" width="720px">
+			<!--Ohh, great traveller! The hint is within the image, not the source code, but good thought! You may need it later on.-->
+		</center>
+		<center>
+			<img src="../images/VigenereCipherTable.png">
+		</center>
+		<script src="../scripts/navbar.js"></script
+		><script src="../scripts/tutorial.js"></script>
+		
+	</body>
+</html>

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Create and style the unlock input container
     const formContainer = document.createElement("div");
-    formContainer.classList.add("keyhole"); // Apply the new CSS class
+    formContainer.classList.add("keyhole");  // Apply the CSS class for styling
 
     const input = document.createElement("input");
     input.type = "text";
@@ -12,19 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const submitButton = document.createElement("button");
     submitButton.innerText = "Unlock";
-    submitButton.classList.add("unlock-btn"); // Apply button styling
+    submitButton.classList.add("unlock-button"); // Apply button styling
     submitButton.addEventListener("click", validatePuzzleKey);
-
-    const puzzleContent = document.createElement("div");
-    puzzleContent.id = "puzzle-content";
-    puzzleContent.style.display = "none";
-    puzzleContent.innerText = "Congratulations! You've unlocked the puzzle.";
 
     formContainer.appendChild(input);
     formContainer.appendChild(document.createElement("br"));
     formContainer.appendChild(submitButton);
     document.body.appendChild(formContainer);
-    document.body.appendChild(puzzleContent);
 
     function validatePuzzleKey() {
         fetch("../assets/puzzlekey.json")
@@ -43,9 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (validKey) {
                     alert("Puzzle unlocked!");
-                    document.querySelector(".keyhole").style.display = "none";
-                    document.getElementById("puzzle-content").style.display = "block";
-                    loadWordlePuzzle(); // Load wordlepuzzle.js
+                    formContainer.style.display = "none"; // Hide the input form
+                    loadWordlePuzzle(); // Load the Wordle puzzle dynamically
                 } else {
                     alert("Incorrect key! Try again.");
                 }
@@ -55,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadWordlePuzzle() {
         const script = document.createElement("script");
-        script.src = "../scripts/wordlepuzzle.js"; // Adjust the path as needed
-        script.onload = () => console.log("Wordle puzzle loaded.");
+        script.src = "../scripts/wordlepuzzle.js";
+        script.onload = () => console.log("wordlepuzzle.js loaded successfully.");
         script.onerror = () => console.error("Failed to load wordlepuzzle.js.");
         document.body.appendChild(script);
     }

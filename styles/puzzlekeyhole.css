@@ -6,19 +6,19 @@
 .keyhole input {
     font-size: 18px;
     padding: 5px;
-    width: 250px;
+    width: 200px;
 }
 
-.unlock-btn {
+.unlock-button {
     background-color: #cd7f32; /* Bronze */
     color: #c0c0c0; /* Silver */
-    font-size: 16px;
-    padding: 8px 12px;
+    padding: 8px 15px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
     margin-top: 10px;
 }
 
-.unlock-btn:hover {
+.unlock-button:hover {
     background-color: #b87333; /* Darker bronze */
 }

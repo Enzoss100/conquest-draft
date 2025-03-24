@@ -45,10 +45,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Puzzle unlocked!");
                     document.querySelector(".keyhole").style.display = "none";
                     document.getElementById("puzzle-content").style.display = "block";
+                    loadWordlePuzzle(); // Load wordlepuzzle.js
                 } else {
                     alert("Incorrect key! Try again.");
                 }
             })
             .catch(error => console.error("Error loading puzzle keys:", error));
+    }
+
+    function loadWordlePuzzle() {
+        const script = document.createElement("script");
+        script.src = "../scripts/wordlepuzzle.js"; // Adjust the path as needed
+        script.onload = () => console.log("Wordle puzzle loaded.");
+        script.onerror = () => console.error("Failed to load wordlepuzzle.js.");
+        document.body.appendChild(script);
     }
 });

@@ -1,5 +1,7 @@
-{
-	puzzle_key: "cfzelejfqcuv",
-	puzzle_num: 1,
-	unlock_puzzle: 2
-}
+[
+	{
+		"puzzle_key": "cfzelejfqcuv",
+		"puzzle_num": 1,
+		"unlock_puzzle": 2
+	}
+]

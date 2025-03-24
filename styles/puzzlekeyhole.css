@@ -1,0 +1,24 @@
+.keyhole {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.keyhole input {
+    font-size: 18px;
+    padding: 5px;
+    width: 250px;
+}
+
+.unlock-btn {
+    background-color: #cd7f32; /* Bronze */
+    color: #c0c0c0; /* Silver */
+    font-size: 16px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.unlock-btn:hover {
+    background-color: #b87333; /* Darker bronze */
+}

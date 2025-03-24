@@ -1,14 +1,42 @@
+
 const WORD = "QUEST";
 const MAX_ATTEMPTS = 6;
 let attempts = 0;
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Create input field
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = "guess-input";
+    input.maxLength = WORD.length;
+    input.placeholder = "Enter your guess...";
+    document.body.appendChild(input);
+    
+    // Create result display
+    const resultDiv = document.createElement("div");
+    resultDiv.id = "result";
+    document.body.appendChild(resultDiv);
+    
+    input.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            const guess = input.value.trim().toUpperCase();
+            input.value = "";
+            if (!guess) return;
+            
+            let result = checkGuess(guess);
+            
+            let feedback = document.createElement("p");
+            feedback.textContent = guess + " - " + result;
+            resultDiv.appendChild(feedback);
+        }
+    });
+});
+
 function checkGuess(guess) {
     if (guess.length !== WORD.length) {
-        console.log("Guess must be exactly " + WORD.length + " letters long.");
-        return;
+        return "Guess must be exactly " + WORD.length + " letters long.";
     }
     
-    guess = guess.toUpperCase();
     let result = [];
     
     for (let i = 0; i < WORD.length; i++) {
@@ -21,22 +49,14 @@ function checkGuess(guess) {
         }
     }
     
-    console.log(result.join(" "));
-    
     if (guess === WORD) {
-        console.log("Congratulations! You guessed the word correctly!");
-        return true;
+        return "🎉 Congratulations! You guessed the word correctly!";
     }
     
     attempts++;
     if (attempts >= MAX_ATTEMPTS) {
-        console.log("Game Over! The correct word was: " + WORD);
         localStorage.setItem("ELIMINATED", "true");
-        return false;
+        return "❌ Game Over! The correct word was: " + WORD;
     }
-    return null;
+    return result.join(" ");
 }
-
-// Example usage:
-// checkGuess("QUICK");
-// checkGuess("QUEST");

@@ -83,3 +83,4 @@ function verifyAnswersAndMoveNext() {
 // Call the function to load scripture on page load or manually
 getScriptureWithBlanks();
 
+

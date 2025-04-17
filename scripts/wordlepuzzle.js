@@ -16,7 +16,7 @@ function initializeWordle() {
     input.id = "guess-input";
     input.maxLength = WORD.length;
     input.placeholder = "Enter your guess...";
-    
+
     // Create result display
     const resultDiv = document.createElement("div");
     resultDiv.id = "result";
@@ -62,15 +62,20 @@ function checkGuess(guess) {
         }
     }
 
+    // If the guess is correct
     if (guess === WORD) {
-        // Update result and feedback with success message
+        // Create the feedback message
         let feedback = document.createElement("p");
-        feedback.textContent = "🎉 Congratulations! You guessed the word correctly!";
+        feedback.textContent = guess + " - 🎉 Congratulations! You guessed the word correctly!";
+
+        // Append feedback to the result div
         document.getElementById("result").appendChild(feedback);
-        
-        // Call the function to load the next stage (fill in blanks)
+
+        // Now, load the next segment (fill in the blanks)
         loadFillInBlanks();
-        return; // Skip the return of result when the word is guessed correctly
+
+        // No need to return anything, since we're handling the display logic above
+        return;
     }
 
     attempts++;
@@ -79,6 +84,7 @@ function checkGuess(guess) {
         return "❌ Game Over! The correct word was: " + WORD;
     }
 
+    // Return the result for an incorrect guess
     return result.join(" ");
 }
 
@@ -95,7 +101,7 @@ function loadFillInBlanks() {
         wordleContainer.parentNode.insertBefore(blanksContainer, wordleContainer.nextSibling);
     }
 
-    // Load the script to display the fill-in-the-blanks puzzle
+    // Load the script
     const script = document.createElement("script");
     script.src = "../scripts/fillblanks.js";
     script.onload = () => {

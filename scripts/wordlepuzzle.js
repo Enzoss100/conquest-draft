@@ -65,15 +65,14 @@ function checkGuess(guess) {
         }
     }
 
-   if (guess === WORD) {
-    const resultText = "🎉 Congratulations! You guessed the word correctly!";
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerText = `QUEST - ${resultText}`;
+	if (guess === WORD) {
+		const resultText = "🎉 Congratulations! You guessed the word correctly!";
+		const resultDiv = document.getElementById("result");
+		resultDiv.innerText = `QUEST - ${resultText}`;
 
-    loadFillInBlanks(); // This will load and render fillblanks.js which calls getScriptureWithBlanks()
-
-    return; // ensure it ends AFTER loading the next stage
-}
+		loadFillInBlanks(); // Load scripture after showing result
+		return;
+	}
 
     attempts++;
     if (attempts >= MAX_ATTEMPTS) {
@@ -85,28 +84,14 @@ function checkGuess(guess) {
 }
 
 function loadFillInBlanks() {
-    const wordleContainer = document.getElementById("wordle-container");
-
-    // Create a new container for the next stage
-    const blanksContainer = document.createElement("div");
-    blanksContainer.id = "scripture-container";
-    blanksContainer.style.display = "none"; // Initially hidden
-
-    // Insert it directly after the Wordle container
-    if (wordleContainer && wordleContainer.parentNode) {
-        wordleContainer.parentNode.insertBefore(blanksContainer, wordleContainer.nextSibling);
-    }
-
-    // Load the fillblanks.js script
     const script = document.createElement("script");
-    script.src = "../scripts/fillblanks.js";
+    script.src = "fillblanks.js";
     script.onload = () => {
-        console.log("fillblanks.js loaded successfully.");
-        blanksContainer.style.display = "block"; // Show container after script loads
+        if (typeof getScriptureWithBlanks === "function") {
+            getScriptureWithBlanks();
+        } else {
+            console.error("getScriptureWithBlanks not found.");
+        }
     };
-    script.onerror = () => console.error("Failed to load fillblanks.js.");
     document.body.appendChild(script);
 }
-
-// Initialize Wordle when this script loads
-initializeWordle();

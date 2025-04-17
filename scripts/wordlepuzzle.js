@@ -70,7 +70,7 @@ function checkGuess(guess) {
         
         // Call the function to load the next stage (fill in blanks)
         loadFillInBlanks();
-        return;
+        return; // Skip the return of result when the word is guessed correctly
     }
 
     attempts++;

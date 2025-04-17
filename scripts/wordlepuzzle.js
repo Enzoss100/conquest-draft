@@ -1,4 +1,5 @@
 import { getScriptureWithBlanks } from './fillblanks.js';
+import { verifyAnswersAndMoveNext } from './fillblanks.js';
 
 const WORD = "QUEST";
 const MAX_ATTEMPTS = 6;

@@ -66,8 +66,7 @@ function checkGuess(guess) {
 
     if (guess === WORD) {
         return "🎉 Congratulations! You guessed the word correctly!";
-		getScriptureWithBlanks();
-		verifyAnswersAndMoveNext();
+		loadFillInBlanks();
     }
 
     attempts++;
@@ -78,5 +77,15 @@ function checkGuess(guess) {
     return result.join(" ");
 }
 
+function loadFillInBlanks() {
+        const script = document.createElement("script");
+        script.src = "../scripts/fillblanks.js";
+        script.onload = () => console.log("fillblanks.js loaded successfully.");
+        script.onerror = () => console.error("Failed to load fillblanks.js.");
+        document.body.appendChild(script);
+    }
+
 // Ensure function runs when script is dynamically loaded
 initializeWordle();
+
+

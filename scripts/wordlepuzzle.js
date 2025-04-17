@@ -39,11 +39,13 @@ function processGuess(input, resultDiv) {
     input.value = "";
     if (!guess) return;
 
-    let result = checkGuess(guess);
+    const result = checkGuess(guess);
 
-    let feedback = document.createElement("p");
-    feedback.textContent = guess + " - " + result;
-    resultDiv.appendChild(feedback);
+    if (result !== null) {
+        const feedback = document.createElement("p");
+        feedback.textContent = guess + " - " + result;
+        resultDiv.appendChild(feedback);
+    }
 }
 
 function checkGuess(guess) {
@@ -52,6 +54,7 @@ function checkGuess(guess) {
     }
 
     let result = [];
+
     for (let i = 0; i < WORD.length; i++) {
         if (guess[i] === WORD[i]) {
             result.push("🟩"); // Correct letter and position
@@ -62,20 +65,10 @@ function checkGuess(guess) {
         }
     }
 
-    // If the guess is correct
     if (guess === WORD) {
-        // Create the feedback message
-        let feedback = document.createElement("p");
-        feedback.textContent = guess + " - 🎉 Congratulations! You guessed the word correctly!";
-
-        // Append feedback to the result div
-        document.getElementById("result").appendChild(feedback);
-
-        // Now, load the next segment (fill in the blanks)
-        loadFillInBlanks();
-
-        // No need to return anything, since we're handling the display logic above
-        return;
+        const successMessage = "🎉 Congratulations! You guessed the word correctly!";
+        loadFillInBlanks(); // Load next segment AFTER message is shown
+        return successMessage;
     }
 
     attempts++;
@@ -84,7 +77,6 @@ function checkGuess(guess) {
         return "❌ Game Over! The correct word was: " + WORD;
     }
 
-    // Return the result for an incorrect guess
     return result.join(" ");
 }
 
@@ -94,25 +86,23 @@ function loadFillInBlanks() {
     // Create a new container for the next stage
     const blanksContainer = document.createElement("div");
     blanksContainer.id = "scripture-container";
-    blanksContainer.style.display = "none"; // Initially hidden if needed
+    blanksContainer.style.display = "none"; // Initially hidden
 
-    // Insert it right after the wordleContainer
+    // Insert it directly after the Wordle container
     if (wordleContainer && wordleContainer.parentNode) {
         wordleContainer.parentNode.insertBefore(blanksContainer, wordleContainer.nextSibling);
     }
 
-    // Load the script
+    // Load the fillblanks.js script
     const script = document.createElement("script");
     script.src = "../scripts/fillblanks.js";
     script.onload = () => {
         console.log("fillblanks.js loaded successfully.");
-        // Now that the script is loaded, show the container
-        blanksContainer.style.display = "block";
+        blanksContainer.style.display = "block"; // Show container after script loads
     };
     script.onerror = () => console.error("Failed to load fillblanks.js.");
     document.body.appendChild(script);
 }
 
-// Ensure function runs when script is dynamically loaded
+// Initialize Wordle when this script loads
 initializeWordle();
-

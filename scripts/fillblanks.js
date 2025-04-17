@@ -1,5 +1,5 @@
 // Function to display the scripture with blanks
-export function getScriptureWithBlanks(targetId = "scripture-container") {
+function getScriptureWithBlanks(targetId = "scripture-container") {
     const scripture = [
         "^10 Finally, be strong in the Lord and in his mighty <input type='text' class='textbox' id='power'>.",
         "^11 Put on the full armor of God, so that you can take your stand against the devil’s schemes.",
@@ -40,7 +40,7 @@ export function getScriptureWithBlanks(targetId = "scripture-container") {
 }
 
 // Function to verify answers and move to the next stage
-export function verifyAnswersAndMoveNext() {
+function verifyAnswersAndMoveNext() {
     // Load the blanks.json file that contains the correct answers
     fetch('blanks.json')
         .then(response => response.json())

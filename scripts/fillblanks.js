@@ -14,8 +14,21 @@ function getScriptureWithBlanks(targetId = "scripture-container") {
         "^20 for which I am an <input type='text' class='textbox' id='ambassador'> in chains. Pray that I may declare it fearlessly, as I should."
     ];
 
-	const container = document.getElementById(targetId);
-    if (!container) return "Scripture container not found.";
+    // Check or create the container
+    let container = document.getElementById(targetId);
+
+    if (!container) {
+        container = document.createElement("div");
+        container.id = targetId;
+
+        // Insert right after Wordle container
+        const wordleContainer = document.getElementById("wordle-container");
+        if (wordleContainer && wordleContainer.parentNode) {
+            wordleContainer.parentNode.insertBefore(container, wordleContainer.nextSibling);
+        } else {
+            document.body.appendChild(container); // fallback
+        }
+    }
 
     const wrapper = document.createElement("div");
     wrapper.className = "script-text";
@@ -28,23 +41,13 @@ function getScriptureWithBlanks(targetId = "scripture-container") {
 
     const submitButton = document.createElement("button");
     submitButton.textContent = "Submit Answers";
-    submitButton.addEventListener("click", () => verifyAnswersAndMoveNext());
+    submitButton.addEventListener("click", verifyAnswersAndMoveNext);
 
     wrapper.appendChild(submitButton);
 
-    // Clear container first
+    // Clear container and add the new content
     container.innerHTML = "";
     container.appendChild(wrapper);
-
-    // 🔽 Move this container below Wordle
-    const wordleContainer = document.getElementById("wordle-container");
-    if (wordleContainer && wordleContainer.parentNode) {
-        wordleContainer.parentNode.insertBefore(container, wordleContainer.nextSibling);
-    } else {
-        document.body.appendChild(container); // fallback
-    }
-
-    return wrapper.outerHTML;
 }
 
 // Function to verify answers and move to the next stage
@@ -69,7 +72,7 @@ function verifyAnswersAndMoveNext() {
 
             if (allCorrect) {
                 alert('Congratulations! You got everything right! Moving to the next stage...');
-                // Optionally: hide the scripture-container or trigger next stage
+                // Optionally hide this section or go further
                 // document.getElementById("scripture-container").style.display = "none";
             } else {
                 alert('Some answers are incorrect. Please try again.');
@@ -79,8 +82,4 @@ function verifyAnswersAndMoveNext() {
             console.error('Error loading blanks.json:', error);
         });
 }
-
-// Call the function to load scripture on page load or manually
-getScriptureWithBlanks();
-
 

@@ -65,11 +65,15 @@ function checkGuess(guess) {
         }
     }
 
-    if (guess === WORD) {
-        const successMessage = "🎉 Congratulations! You guessed the word correctly!";
-        loadFillInBlanks(); // Load next segment AFTER message is shown
-        return successMessage;
-    }
+   if (guess === WORD) {
+    const resultText = "🎉 Congratulations! You guessed the word correctly!";
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerText = `QUEST - ${resultText}`;
+
+    loadFillInBlanks(); // This will load and render fillblanks.js which calls getScriptureWithBlanks()
+
+    return; // ensure it ends AFTER loading the next stage
+}
 
     attempts++;
     if (attempts >= MAX_ATTEMPTS) {

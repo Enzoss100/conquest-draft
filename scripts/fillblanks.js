@@ -14,11 +14,8 @@ function getScriptureWithBlanks(targetId = "scripture-container") {
         "^20 for which I am an <input type='text' class='textbox' id='ambassador'> in chains. Pray that I may declare it fearlessly, as I should."
     ];
 
-    const container = document.getElementById(targetId);
+	const container = document.getElementById(targetId);
     if (!container) return "Scripture container not found.";
-
-    // Show the container when the scripture is loaded
-    container.style.display = "block";
 
     const wrapper = document.createElement("div");
     wrapper.className = "script-text";
@@ -29,15 +26,23 @@ function getScriptureWithBlanks(targetId = "scripture-container") {
         wrapper.appendChild(p);
     });
 
-    // Add a submit button
     const submitButton = document.createElement("button");
     submitButton.textContent = "Submit Answers";
     submitButton.addEventListener("click", () => verifyAnswersAndMoveNext());
 
     wrapper.appendChild(submitButton);
 
+    // Clear container first
     container.innerHTML = "";
     container.appendChild(wrapper);
+
+    // 🔽 Move this container below Wordle
+    const wordleContainer = document.getElementById("wordle-container");
+    if (wordleContainer && wordleContainer.parentNode) {
+        wordleContainer.parentNode.insertBefore(container, wordleContainer.nextSibling);
+    } else {
+        document.body.appendChild(container); // fallback
+    }
 
     return wrapper.outerHTML;
 }

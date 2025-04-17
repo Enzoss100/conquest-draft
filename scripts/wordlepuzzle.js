@@ -63,8 +63,7 @@ function checkGuess(guess) {
     }
 
     if (guess === WORD) {
-		loadFillInBlanks();
-        return "🎉 Congratulations! You guessed the word correctly!"
+        return "🎉 Congratulations! You guessed the word correctly!";
     }
 
     attempts++;
@@ -88,7 +87,7 @@ function loadFillInBlanks() {
         wordleContainer.parentNode.insertBefore(blanksContainer, wordleContainer.nextSibling);
     }
 
-    // Load the script
+    // Load the script to display the fill-in-the-blanks puzzle
     const script = document.createElement("script");
     script.src = "../scripts/fillblanks.js";
     script.onload = () => {
@@ -102,5 +101,4 @@ function loadFillInBlanks() {
 
 // Ensure function runs when script is dynamically loaded
 initializeWordle();
-
 

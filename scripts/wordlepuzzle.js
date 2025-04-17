@@ -1,3 +1,5 @@
+import { getScriptureWithBlanks } from './fillblanks.js';
+
 const WORD = "QUEST";
 const MAX_ATTEMPTS = 6;
 let attempts = 0;
@@ -64,6 +66,8 @@ function checkGuess(guess) {
 
     if (guess === WORD) {
         return "🎉 Congratulations! You guessed the word correctly!";
+		getScriptureWithBlanks();
+		verifyAnswersAndMoveNext();
     }
 
     attempts++;

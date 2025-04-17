@@ -66,12 +66,7 @@ function checkGuess(guess) {
     }
 
 	if (guess === WORD) {
-		const resultText = "🎉 Congratulations! You guessed the word correctly!";
-		const resultDiv = document.getElementById("result");
-		resultDiv.innerText = `QUEST - ${resultText}`;
-
-		loadFillInBlanks(); // Load scripture after showing result
-		return;
+		return "🎉 Congratulations! You guessed the word correctly!";
 	}
 
     attempts++;
@@ -83,15 +78,3 @@ function checkGuess(guess) {
     return result.join(" ");
 }
 
-function loadFillInBlanks() {
-    const script = document.createElement("script");
-    script.src = "../scripts/fillblanks.js";
-    script.onload = () => {
-        if (typeof getScriptureWithBlanks === "function") {
-            getScriptureWithBlanks();
-        } else {
-            console.error("getScriptureWithBlanks not found.");
-        }
-    };
-    document.body.appendChild(script);
-}

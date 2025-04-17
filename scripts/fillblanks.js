@@ -17,6 +17,9 @@ function getScriptureWithBlanks(targetId = "scripture-container") {
     const container = document.getElementById(targetId);
     if (!container) return "Scripture container not found.";
 
+    // Show the container when the scripture is loaded
+    container.style.display = "block";
+
     const wrapper = document.createElement("div");
     wrapper.className = "script-text";
 
@@ -41,7 +44,6 @@ function getScriptureWithBlanks(targetId = "scripture-container") {
 
 // Function to verify answers and move to the next stage
 function verifyAnswersAndMoveNext() {
-    // Load the blanks.json file that contains the correct answers
     fetch('blanks.json')
         .then(response => response.json())
         .then(data => {
@@ -49,21 +51,21 @@ function verifyAnswersAndMoveNext() {
             let allCorrect = true;
 
             textboxes.forEach(textbox => {
-                const answerKey = textbox.id; // Using the ID to reference the correct answer
+                const answerKey = textbox.id;
                 const userAnswer = textbox.value.trim().toLowerCase();
 
-                // Check if the answer is correct
-                if (userAnswer !== data[answerKey].toLowerCase()) {
+                if (userAnswer !== data[answerKey]?.toLowerCase()) {
                     allCorrect = false;
-                    textbox.style.borderColor = 'red'; // Indicate incorrect answer
+                    textbox.style.borderColor = 'red';
                 } else {
-                    textbox.style.borderColor = 'green'; // Indicate correct answer
+                    textbox.style.borderColor = 'green';
                 }
             });
 
             if (allCorrect) {
                 alert('Congratulations! You got everything right! Moving to the next stage...');
-                // You can call another function to move to the next stage here.
+                // Optionally: hide the scripture-container or trigger next stage
+                // document.getElementById("scripture-container").style.display = "none";
             } else {
                 alert('Some answers are incorrect. Please try again.');
             }
@@ -73,4 +75,6 @@ function verifyAnswersAndMoveNext() {
         });
 }
 
+// Call the function to load scripture on page load or manually
 getScriptureWithBlanks();
+

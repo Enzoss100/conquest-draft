@@ -63,7 +63,7 @@ function checkGuess(guess) {
     }
 
     if (guess === WORD) {
-        print(guess,"🎉 Congratulations! You guessed the word correctly!");
+        return "🎉 Congratulations! You guessed the word correctly!"
 		loadFillInBlanks();
     }
 
@@ -76,12 +76,29 @@ function checkGuess(guess) {
 }
 
 function loadFillInBlanks() {
-        const script = document.createElement("script");
-        script.src = "../scripts/fillblanks.js";
-        script.onload = () => console.log("fillblanks.js loaded successfully.");
-        script.onerror = () => console.error("Failed to load fillblanks.js.");
-        document.body.appendChild(script);
+    const wordleContainer = document.getElementById("wordle-container");
+
+    // Create a new container for the next stage
+    const blanksContainer = document.createElement("div");
+    blanksContainer.id = "scripture-container";
+    blanksContainer.style.display = "none"; // Initially hidden if needed
+
+    // Insert it right after the wordleContainer
+    if (wordleContainer && wordleContainer.parentNode) {
+        wordleContainer.parentNode.insertBefore(blanksContainer, wordleContainer.nextSibling);
     }
+
+    // Load the script
+    const script = document.createElement("script");
+    script.src = "../scripts/fillblanks.js";
+    script.onload = () => {
+        console.log("fillblanks.js loaded successfully.");
+        // Now that the script is loaded, show the container
+        blanksContainer.style.display = "block";
+    };
+    script.onerror = () => console.error("Failed to load fillblanks.js.");
+    document.body.appendChild(script);
+}
 
 // Ensure function runs when script is dynamically loaded
 initializeWordle();

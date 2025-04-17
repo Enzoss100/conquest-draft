@@ -1,5 +1,3 @@
-import { getScriptureWithBlanks, verifyAnswersAndMoveNext } from './fillblanks.js';
-
 const WORD = "QUEST";
 const MAX_ATTEMPTS = 6;
 let attempts = 0;

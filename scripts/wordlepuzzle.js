@@ -63,8 +63,8 @@ function checkGuess(guess) {
     }
 
     if (guess === WORD) {
-        return "🎉 Congratulations! You guessed the word correctly!"
 		loadFillInBlanks();
+        return "🎉 Congratulations! You guessed the word correctly!"
     }
 
     attempts++;

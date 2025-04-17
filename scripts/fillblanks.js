@@ -73,3 +73,4 @@ function verifyAnswersAndMoveNext() {
         });
 }
 
+getScriptureWithBlanks();

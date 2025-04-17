@@ -85,7 +85,7 @@ function checkGuess(guess) {
 
 function loadFillInBlanks() {
     const script = document.createElement("script");
-    script.src = "fillblanks.js";
+    script.src = "../scripts/fillblanks.js";
     script.onload = () => {
         if (typeof getScriptureWithBlanks === "function") {
             getScriptureWithBlanks();

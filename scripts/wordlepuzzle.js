@@ -63,7 +63,14 @@ function checkGuess(guess) {
     }
 
     if (guess === WORD) {
-        return "🎉 Congratulations! You guessed the word correctly!";
+        // Update result and feedback with success message
+        let feedback = document.createElement("p");
+        feedback.textContent = "🎉 Congratulations! You guessed the word correctly!";
+        document.getElementById("result").appendChild(feedback);
+        
+        // Call the function to load the next stage (fill in blanks)
+        loadFillInBlanks();
+        return;
     }
 
     attempts++;
@@ -71,6 +78,7 @@ function checkGuess(guess) {
         localStorage.setItem("ELIMINATED", "true");
         return "❌ Game Over! The correct word was: " + WORD;
     }
+
     return result.join(" ");
 }
 
